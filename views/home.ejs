@@ -1,0 +1,29 @@
+<div class="author">
+    <h1 class="author_heading">Hi, This is a Blog Page</h1>
+    <p class="author_body">Get updated with latest news, current affair, sports and programs</p>
+</div>
+
+<img src="/images/codeGuy.jpg" alt="Image with Laptop" class="codeGuy" width="989" height="528">
+
+<section class="articles">
+    <h2 class="articles_heading" >Latest Posts</h2>
+
+    <ul class="article_ul">
+
+        <% posts.forEach(post => { %>         
+            <li>
+                <a href="/post/<%= post._id %>">
+                    <span><%= post.title %></span>
+                    <span class="article_list_date"><%= post.createdAt.toDateString() %></span>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+
+<!-- PAGINATION ON THE SITE -->
+
+<% if (nextPage !== null) { %>
+    <a href="/?page=<%= nextPage %>" class="pagination">&lt; Older Posts</a>
+<% } %>
+    
+</section>
