@@ -38,7 +38,8 @@ app.use(session({
   secret: 'keboard cat',
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({mongoUrl: MONGODB_URI }),
+  httpOnly: true,
+  store: MongoStore.create({mongoUrl: process.env.MONGODB_URI}),
   cookie: {maxAge: 1000 * 60 * 60 * 24}
 }))
 
