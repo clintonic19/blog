@@ -3,7 +3,7 @@ const express = require("express");
 const expressLayout = require("express-ejs-layouts");
 const connectDB = require("./server/dbConfig/db");
 const cookieParser = require("cookie-parser");  
-const MongoStore = require('connect-mongo').default;
+const MongoStore = require('connect-mongo');
 const session = require("express-session");
 const methodOverride = require("method-override");
 // const flash = require("express-flash");
@@ -39,7 +39,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   httpOnly: true,
-  store: MongoStore.create({mongoUrl: process.env.MONGODB_URI}),
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI
+  }),
   cookie: {maxAge: 1000 * 60 * 60 * 24}
 }))
 
