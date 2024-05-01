@@ -29,6 +29,7 @@ app.use(methodOverride("_method"));
 // FLASH SETUP
 app.use(flash({ sessionKeyName: "flashMessage" }));
 
+const dbURL = process.env.MONGODB_URI;
 
 app.locals.isActiveRoute = isActiveRoute;
 app.locals.readingTime = readingTime;
@@ -40,7 +41,9 @@ app.use(session({
   saveUninitialized: true,
   httpOnly: true,
   store: MongoStore.create({
-    mongoUrl: process.env.MONGODB_URI
+    mongoUrl: dbURL,
+    // client: connection.getClient(),
+    collection: 'session'
   }),
   cookie: {maxAge: 1000 * 60 * 60 * 24}
 }))

@@ -182,11 +182,11 @@ router.get("/edit-post/:id", authMiddleware, async (req, res) => {
   try {
     const data = await Post.findById({ _id: req.params.id });
     // .where({state: 'published'}).populate('author')
-    if (data) {
-      return res.render("admin/edit-post", { data, layout: adminLayout });
-    } else {
-      console.log("ID not Found");
-    }
+    // if (data) {
+     res.render("admin/edit-post", { data, layout: adminLayout });
+    // } else {
+    //   console.log("ID not Found");
+    // }
     //   res.redirect("/dashboard/${req.params.id}");
   } catch (error) {
     console.log(error);

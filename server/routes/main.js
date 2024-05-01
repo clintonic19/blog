@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
         let page = req.query.page || 1;
 
         const posts = await Post.aggregate([{$sort: {createdAt: -1}}]).skip(perPage * page - perPage).limit(perPage).exec();
-
+        
         const locals = {
             title: posts.title,
             description: posts.description
